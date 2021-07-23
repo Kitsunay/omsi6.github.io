@@ -1,5 +1,7 @@
 "use strict";
 
+const baseExpMultiplier = 8;
+
 function Actions() {
     this.current = [];
     this.next = [];
@@ -244,15 +246,14 @@ function setAdjustedTicks(action) {
 }
 
 function calcSoulstoneMult(soulstones) {
-    return 1 + Math.pow(soulstones, 0.8) / 30;
+    return 1 + Math.pow(soulstones, 0.9) / 10;
 }
 
 function calcTalentMult(talent) {
-    return 1 + Math.pow(talent, 0.4) / 3;
-}
+    return 1 + Math.pow(talent, 0.9) / 10;
 
 function addExpFromAction(action) {
-    const adjustedExp = action.expMult * (action.manaCost() / action.adjustedTicks);
+    const adjustedExp = baseExpMultiplier * action.expMult * (action.manaCost() / action.adjustedTicks);
     for (const stat of statList) {
         if (action.stats[stat]) {
             const expToAdd = action.stats[stat] * adjustedExp * getTotalBonusXP(stat);
