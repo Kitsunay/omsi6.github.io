@@ -251,7 +251,8 @@ function calcSoulstoneMult(soulstones) {
 
 function calcTalentMult(talent) {
     return 1 + Math.pow(talent, 0.9) / 10;
-
+}
+    
 function addExpFromAction(action) {
     const adjustedExp = baseExpMultiplier * action.expMult * (action.manaCost() / action.adjustedTicks);
     for (const stat of statList) {
